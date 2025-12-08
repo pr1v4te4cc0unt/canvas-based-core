@@ -1,5 +1,5 @@
 import { Arc2D } from "../../model/arc2D.js";
-import { StyleType } from "../../model/styleType.js";
+import { StyleType } from "../styleType.js";
 
 export class CanvasArc2D extends Arc2D {
 

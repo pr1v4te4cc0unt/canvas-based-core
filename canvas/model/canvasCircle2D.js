@@ -1,5 +1,5 @@
 import { Circle2D } from "../../model/circle2D.js";
-import { StyleType } from "../../model/styleType.js";
+import { StyleType } from "../styleType.js";
 
 export class CanvasCircle2D extends Circle2D {
 

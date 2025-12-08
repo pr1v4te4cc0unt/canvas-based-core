@@ -1,5 +1,5 @@
 import { Rect2D } from "../../model/rect2D.js";
-import { StyleType } from "../../model/styleType.js";
+import { StyleType } from "../styleType.js";
 
 export class CanvasRect2D extends Rect2D {
 

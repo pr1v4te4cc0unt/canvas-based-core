@@ -7,12 +7,12 @@ export class CanvasCollisionDetection2D extends CanvasCollisionDetection {
     }
 
     static leftCollisionDetected(source, ctx){
-        const x = (source.x + source.currentXVelocity) + 0.1;
+        const x = (source.x + source.xVelocity) + 0.1;
         return super.leftCollisionDetected(x, ctx);
     }
 
     static rightCollisionDetected(source, ctx){
-        const x = ((source.x + source.width) + source.currentXVelocity) - 1;
+        const x = ((source.x + source.width) + source.xVelocity) - 1;
         return super.rightCollisionDetected(x, ctx);
     }
 
@@ -21,12 +21,12 @@ export class CanvasCollisionDetection2D extends CanvasCollisionDetection {
     }
 
     static topCollisionDetected(source, ctx){
-        const y = (source.y + source.currentYVelocity) + 0.1;
+        const y = (source.y + source.yVelocity) + 0.1;
         return super.topCollisionDetected(y, ctx);
     }
 
     static bottomCollisionDetected(source, ctx){
-        const y = ((source.y + source.height) + source.currentYVelocity) - 1;
+        const y = ((source.y + source.height) + source.yVelocity) - 1;
         return super.bottomCollisionDetected(y, ctx);
     }
 
