@@ -30,6 +30,9 @@ export class CollisionDetection2D extends CollisionDetection {
                 target: new Point2D(target.x, target.y)
             }
         }
+        else{
+            return null;
+        }
     }
 
     static getRightCollisionDetected(source, target){
@@ -39,6 +42,9 @@ export class CollisionDetection2D extends CollisionDetection {
                 target: new Point2D(target.x, target.y)
             }
         }
+        else{
+            return null;
+        }
     }
 
     static getHorizontalCollisionDetected(source, target){
@@ -47,6 +53,9 @@ export class CollisionDetection2D extends CollisionDetection {
                 source: new Point2D(source.x, source.y),
                 target: new Point2D(target.x, target.y)
             }
+        }
+        else{
+            return null;
         }
     }
 
@@ -73,6 +82,9 @@ export class CollisionDetection2D extends CollisionDetection {
                 target: new Point2D(target.x, target.y)
             }
         }
+        else{
+            return null;
+        }
     }
 
     static getBottomCollisionDetected(source, target){
@@ -82,6 +94,9 @@ export class CollisionDetection2D extends CollisionDetection {
                 target: new Point2D(target.x, target.y)
             }
         }
+        else{
+            return null;
+        }
     }
 
     static getVerticalCollisionDetected(source, target){
@@ -90,6 +105,9 @@ export class CollisionDetection2D extends CollisionDetection {
                 source: new Point2D(source.x, source.y),
                 target: new Point2D(target.x, target.y)
             }
+        }
+        else{
+            return null;
         }
     }
 
@@ -104,15 +122,18 @@ export class CollisionDetection2D extends CollisionDetection {
                 target: new Point2D(target.x, target.y)
             }
         }
+        else{
+            return null;
+        }
     }
 
-    static #isWithinXRange(source, target){
-        return (((source.x + source.width) >= target.x) && (source.x <= target.x)) || 
-               ((source.x <= (target.x + target.width)) && (source.x >= target.x)); 
+    static #isWithinXRange(source, target) {
+        return ((source.x + source.width) >= target.x) || 
+               (source.x <= (target.x + target.width));
     }
 
-    static #isWithinYRange(source, target){
-        return (((source.y + source.height) >= target.y) && (source.y <= target.y)) || 
-               ((source.y <= (target.y + target.height)) && (source.y >= target.y));
+    static #isWithinYRange(source, target) {
+        return ((source.y + source.height) >= target.y) || 
+               (source.y <= (target.y + target.height));
     }
 }
