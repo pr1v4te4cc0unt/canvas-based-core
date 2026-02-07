@@ -1,4 +1,4 @@
-import { Point2D } from "./point2D.js";
+import { Point2D } from "../2D/point2D.js";
 
 export class Point3D extends Point2D {
 

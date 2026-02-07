@@ -1,23 +1,33 @@
-import { Circle2D } from "../../model/circle2D.js";
+import { Circle2D } from "../../geometry/module.js";
 import { StyleType } from "../styleType.js";
 
 export class CanvasCircle2D extends Circle2D {
 
     //props
-    ctx;
     styleType;
     style;
 
-    constructor(ctx, x, y, radius = 0, style = "#000000", styleType = StyleType.FILL, xVelocity = 0.00, yVelocity = 0.00) {
-        super(x, y, radius, xVelocity, yVelocity);
+    //ctor
+    constructor(
+        ctx, 
+        x, 
+        y, 
+        radius = 0, 
+        style = "#000000", 
+        styleType = StyleType.FILL, 
+        xVelocity = 0.00, 
+        yVelocity = 0.00
+    ) {
+        super(
+            x, 
+            y, 
+            radius, 
+            xVelocity, 
+            yVelocity
+        );
         this.ctx = ctx;
         this.styleType = styleType;
         this.style = style;
-    }
-
-    setCTX(val){
-        this.ctx = val;
-        return this;
     }
 
     setStyleType(val){

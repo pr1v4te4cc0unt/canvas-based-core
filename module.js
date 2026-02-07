@@ -2,26 +2,21 @@
 import { 
     KeyCode,
     KeyboardControlMapBase
-} from "./control/control-module.js";
-
-import { 
-    Point2D, 
-    Point3D 
-} from "./geometry/geometry-module.js";
+} from "./controller/module.js";
 
 import { 
     CollisionDetection, 
-    CollisionDetection2D 
-} from "./collisionDetection/collisionDetection-module.js";
-
-import { 
-    ObjectBase2D,
-    ObjectBase3D,
+    CollisionDetection2D,
+    Point2D, 
+    Point3D,
+    Object2D,
+    Object3D,
     Arc2D,
     Circle2D,
     Line2D,
     Rect2D 
-} from "./model/model-module.js";
+} from "./geometry/module.js";
+
 
 import { 
     StyleType,
@@ -31,7 +26,7 @@ import {
     CanvasCircle2D,
     CanvasLine2D,
     CanvasRect2D 
-} from "./canvas/canvas-module.js";
+} from "./canvas/module.js";
 
 
 export {
@@ -42,8 +37,8 @@ export {
     CollisionDetection,
     CollisionDetection2D,
     StyleType,
-    ObjectBase2D,
-    ObjectBase3D,
+    Object2D,
+    Object3D,
     Arc2D,
     Circle2D,
     Line2D,

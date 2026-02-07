@@ -1,15 +1,28 @@
-import { ObjectBase2D } from "./ObjectBase2D.js";
-import { Point2D } from "../geometry/point2D.js";
+import { Object2D } from "./object2D.js";
+import { Point2D } from "../point2D.js";
+import { Line2D } from "./line2D.js";
 
-export class Rect2D extends ObjectBase2D {
-
+export class Rect2D extends Object2D {
+    
     //props
-    //type int
-    height;
-    width;
+    height = 0;
+    width = 0;
 
-    constructor(x, y, height, width, xVelocity = 0.00, yVelocity = 0.00) {
-        super(x, y, xVelocity, yVelocity);
+    //ctor
+    constructor(
+        x, 
+        y, 
+        height, 
+        width, 
+        xVelocity = 0.00, 
+        yVelocity = 0.00
+    ) {
+        super(
+            x, 
+            y, 
+            xVelocity, 
+            yVelocity
+        );
         this.height = height;
         this.width = width;
     }
@@ -36,6 +49,10 @@ export class Rect2D extends ObjectBase2D {
         return new Point2D(x, y);
     }
 
+    getTop(){
+        return new Line2D(this.x, this.y, this.x + this.width, this.y);
+    }
+
     getBottomRightCoord(){
         const x = (this.x + this.width);
         const y = (this.y + this.height);
@@ -46,6 +63,10 @@ export class Rect2D extends ObjectBase2D {
         const x = this.x;
         const y = (this.y + this.height);
         return new Point2D(x, y);
+    }
+
+    getBottom(){
+        return new Line2D(this.x, this.y + this.height, this.x + this.width, this.y + this.height);
     }
 
     getCenterCoord(){
@@ -59,5 +80,4 @@ export class Rect2D extends ObjectBase2D {
         //[topleft, topright, bottomright, bottomleft, center]
         return [this.getTopLeftCoord(), this.getTopRightCoord(), this.getBottomRightCoord(), this.getBottomLeftCoord(), this.getCenterCoord()];
     }
-
 }

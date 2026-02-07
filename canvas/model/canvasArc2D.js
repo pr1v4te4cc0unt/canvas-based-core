@@ -1,16 +1,33 @@
-import { Arc2D } from "../../model/arc2D.js";
+import { Arc2D } from "../../geometry/module.js";
 import { StyleType } from "../styleType.js";
 
 export class CanvasArc2D extends Arc2D {
 
     //props
-    ctx;
     styleType;
     style;
 
-    constructor(ctx, x, y, radius = 0, startAngle = 0, endAngle = 0, style = "#000000", styleType = StyleType.FILL, xVelocity = 0.00, yVelocity = 0.00) {
-        super(x, y, radius, startAngle, endAngle, xVelocity, yVelocity);
-        this.ctx = ctx;
+    //ctor
+    constructor(
+        x, 
+        y, 
+        radius = 0, 
+        startAngle = 0, 
+        endAngle = 0, 
+        style = "#000000", 
+        styleType = StyleType.FILL, 
+        xVelocity = 0.00, 
+        yVelocity = 0.00
+    ) {
+        super(
+            x, 
+            y, 
+            radius, 
+            startAngle, 
+            endAngle, 
+            xVelocity, 
+            yVelocity
+        );
         this.styleType = styleType;
         this.style = style;
     }
@@ -30,23 +47,23 @@ export class CanvasArc2D extends Arc2D {
         return this;
     }
 
-    draw(){
-        this.#resolveDraw();
+    draw(ctx){
+        this.#resolveDraw(ctx);
     }
 
-    #resolveDraw(){
+    #resolveDraw(ctx){
         switch(this.styleType){
             case StyleType.FILL:
-                this.ctx.fillStyle = this.style;
-                this.ctx.beginPath();
-                this.ctx.arc(this.x, this.y, this.radius, this.startAngle, this.endAngle);
-                this.ctx.fill();
+                ctx.fillStyle = style;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, this.startAngle, this.endAngle);
+                ctx.fill();
                 break;
             case StyleType.STROKE:
-                this.ctx.strokeStyle = this.style;
-                this.ctx.beginPath();
-                this.ctx.arc(this.x, this.y, this.radius, this.startAngle, this.endAngle);
-                this.ctx.stroke();
+                ctx.strokeStyle = this.style;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, this.startAngle, this.endAngle);
+                ctx.stroke();
         }
     }
 

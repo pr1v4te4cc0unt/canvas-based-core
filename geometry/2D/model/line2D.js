@@ -1,24 +1,30 @@
-export class Line2D {
+import { Object2D } from "./object2D.js";
 
-    originX;
-    originX;
-    targetX;
-    targetY;
+export class Line2D extends Object2D {
 
-    constructor(originX, originY, targetX, targetY){
-        this.originX = originX;
-        this.originY = originY;
+    //props
+    targetX = 0;
+    targetY = 0;
+
+    //ctor
+    constructor(
+        x, 
+        y, 
+        targetX, 
+        targetY
+    ) {
+        super(x, y);
         this.targetX = targetX;
         this.targetY = targetY;
     }
 
     setOriginX(val){
-        this.originX = val;
+        this.x = val;
         return this;
     }
 
     setOriginY(val){
-        this.originY = val;
+        this.y = val;
         return this;
     }
 

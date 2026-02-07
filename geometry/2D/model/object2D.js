@@ -1,15 +1,18 @@
-export class ObjectBase2D {
+export class Object2D {
 
     //props
-    //type int
-    x;
-    y;
-    //type float
-    xVelocity;
-    yVelocity;
+    x = 0;
+    y = 0;
+    xVelocity = 0.00;
+    yVelocity = 0.00;
 
     //ctor
-    constructor(x, y, xVelocity = 0.00, yVelocity = 0.00) {
+    constructor(
+        x = 0, 
+        y = 0, 
+        xVelocity = 0.00, 
+        yVelocity = 0.00
+    ) {
         this.x = x;
         this.y = y;
         this.xVelocity = xVelocity;

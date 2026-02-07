@@ -1,13 +1,12 @@
-import { ObjectBase2D } from "./ObjectBase2D.js";
+import { Object2D } from "../../2D/model/object2D.js";
 
-export class ObjectBase3D extends ObjectBase2D {
+export class Object3D extends Object2D {
 
     //props
-    //type int
     z;
-    //type float
-    zVelocity;
+    zVelocity = 0.00;
 
+    //ctor
     constructor(x, y, z, xVelocity = 0.00, yVelocity = 0.00, zVelocity = 0.00) {
         super(x, y, xVelocity, yVelocity);
         this.z = z;

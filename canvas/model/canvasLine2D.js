@@ -1,13 +1,24 @@
-import { Line2D } from "../../model/line2D.js";
+import { Line2D } from "../../geometry/module.js";
 
 export class CanvasLine2D extends Line2D {
 
-    ctx;
+    //props
     style;
 
-    constructor(ctx, originX, originY, targetX, targetY, style = "#000000"){
-        super(originX, originY, targetX, targetY);
-        this.ctx = ctx;
+    //ctor
+    constructor(
+        x, 
+        y, 
+        targetX, 
+        targetY, 
+        style = "#000000"
+    ){
+        super(
+            x, 
+            y, 
+            targetX, 
+            targetY
+        );
         this.style = style;
     }
 
@@ -19,7 +30,7 @@ export class CanvasLine2D extends Line2D {
     draw(){
         this.ctx.strokeStyle = this.style;
         this.ctx.beginPath();
-        this.ctx.moveTo(this.originX, this.originY);
+        this.ctx.moveTo(this.x, this.y);
         this.ctx.lineTo(this.targetX, this.targetY);
         this.ctx.stroke();
     }

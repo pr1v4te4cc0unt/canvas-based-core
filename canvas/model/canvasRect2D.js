@@ -1,23 +1,39 @@
-import { Rect2D } from "../../model/rect2D.js";
+import { Rect2D } from "../../geometry/module.js";
 import { StyleType } from "../styleType.js";
 
 export class CanvasRect2D extends Rect2D {
 
     //props
-    ctx;
     styleType;
     style;
+    rotation = 0.00;
+    rotationSpeed = 0.00;
 
-    constructor(ctx, x, y, height, width, style = "#000000", styleType = StyleType.FILL, xVelocity = 0.00, yVelocity = 0.00) {
-        super(x, y, height, width, xVelocity, yVelocity);
-        this.ctx = ctx;
+    //ctor
+    constructor(
+        x, 
+        y, 
+        height, 
+        width, 
+        style = "#000000", 
+        styleType = StyleType.FILL, 
+        xVelocity = 0.00, 
+        yVelocity = 0.00, 
+        rotation = 0.00, 
+        rotationSpeed = 0.00
+    ) {
+        super(
+            x, 
+            y, 
+            height, 
+            width, 
+            xVelocity, 
+            yVelocity
+        );
         this.styleType = styleType;
         this.style = style;
-    }
-
-    setCTX(val){
-        this.ctx = val;
-        return this;
+        this.rotation = rotation;
+        this.rotationSpeed = rotationSpeed;
     }
 
     setStyleType(val){
@@ -30,35 +46,61 @@ export class CanvasRect2D extends Rect2D {
         return this;
     }
 
-    draw(){
-        this.#resolveDraw();
+    setRotation(val){
+        this.rotation = val;
+        return this;
     }
 
-    #resolveDraw(){
+    setRotationSpeed(val){
+        this.rotationSpeed = val;
+        return this;
+    }
+
+    draw(ctx){
+        this.#resolveDraw(ctx, this.x, this.y);
+    }
+
+    rotate(ctx){
+        this.#resetRotation();
+        this.rotation += this.rotationSpeed;
+        ctx.save();
+        ctx.translate(this.x, this.y);
+        ctx.rotate(this.rotation);
+        this.#resolveDraw(ctx, (-this.x / this.x), (-this.y / this.y));
+        ctx.resetTransform();
+        ctx.restore();
+    }
+
+    spin(ctx){
+        this.#resetRotation();
+        this.rotation += this.rotationSpeed;
+        ctx.save();
+        ctx.translate(this.x, this.y);
+        ctx.rotate(this.rotation);
+        this.#resolveDraw(ctx, (-this.width / 2), (-this.height / 2));
+        ctx.resetTransform();
+        ctx.restore();
+    }
+
+    clear(ctx){
+        ctx.clearRect(this.x, this.y, this.width, this.height);
+    }
+
+    #resolveDraw(ctx, x, y){
         switch(this.styleType){
             case StyleType.FILL:
-                this.ctx.fillStyle = this.style;
-                this.ctx.fillRect(this.x, this.y, this.width, this.height);
+                ctx.fillStyle = this.style;
+                ctx.fillRect(x, y, this.width, this.height);
                 break;
             case StyleType.STROKE:
-                this.ctx.strokeStyle = this.style;
-                this.ctx.strokeRect(this.x, this.y, this.width, this.height);
+                ctx.strokeStyle = this.style;
+                ctx.strokeRect(x, y, this.width, this.height);
         }
     }
-
-    clear(){
-        this.ctx.clearRect(this.x, this.y, this.width, this.height);
+    
+    #resetRotation(){
+        if(this.rotation > (2 * Math.PI)){
+            this.rotation = 0;
+        }
     }
-
-    rotate(degree){
-        this.ctx.save();
-        this.degree = (this.degree + degree) % 360;
-        const rad = this.degree * (Math.PI / 180);
-        this.ctx.translate(this.x, this.y);
-        this.ctx.rotate(rad);
-        this.ctx.fillRect((-this.width / 2), (-this.height / 2), this.width, this.height);
-        this.ctx.resetTransform();
-        this.ctx.restore();
-    }
-
 }
